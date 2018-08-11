@@ -26,17 +26,9 @@ function A_Tool_4_Use:Remove_All_Unit()
 end
 
 function A_Tool_4_Use:Remove_Crosshair_Unit()
-	if Utils and managers.player and managers.player:player_unit() then
-		local camera = managers.player:player_unit():camera()
-		local From = camera:position()
-		local To = Vector3()
-		mvector3.set(To, camera:forward())
-		mvector3.multiply(To, 20000)
-		mvector3.add(To, From)
-		local Ray = World:raycast("ray", From, To, "slot_mask", managers.slot:get_mask("bullet_impact_targets"))
-		if Ray and Ray.unit then
-			self:Remove_One_Unit(Ray.unit)
-		end
+	local unit = self:Get_Crosshair_Unit()
+	if unit then
+		self:Remove_One_Unit(unit)
 	end
 end
 

@@ -13,6 +13,20 @@
 			"callback" : "A_Tool_4_Use_Main_Menu"
 		},
 		{
+			"type" : "button",
+			"id" : "A_Tool_4_SpawnEnemy_Menu",
+			"title" : "A_Tool_4_Use_SpawnEnemy_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_SpawnEnemy_Menu"
+		},
+		{
+			"type" : "button",
+			"id" : "A_Tool_4_GiveAnimToUnit_Menu",
+			"title" : "A_Tool_4_Use_GiveAnimToUnit_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_GiveAnimToUnit"
+		},
+		{
 			"type":"multiple_choice",
 			"id":"A_Tool_4_DayNight_Menu",
 			"title":"A_Tool_4_Use_DayNight_title",
@@ -26,6 +40,19 @@
 				"Tool_4_Use_DayNight_pd2_env_n2"
 			],
 			"value":"DayNight"
+		},
+		{
+			"type":"multiple_choice",
+			"id":"A_Tool_4_EnemyType_Menu",
+			"title":"A_Tool_4_Use_EnemyType_title",
+			"description":"A_Tool_4_Use_empty_desc",
+			"callback":"A_Tool_4_Use_EnemyType",
+			"items":[
+				"Tool_4_Use_EnemyType_off",
+				"Tool_4_Use_EnemyType_on",
+				"Tool_4_Use_EnemyType_friend"
+			],
+			"value":"EnemyStates"
 		},
 		{
 			"type" : "button",

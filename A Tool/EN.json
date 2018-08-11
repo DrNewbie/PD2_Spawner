@@ -10,5 +10,11 @@
 	"Tool_4_Use_DayNight_pd2_env_hox_02":"Early Morning",
 	"Tool_4_Use_DayNight_pd2_env_morning_02":"Morning",
 	"Tool_4_Use_DayNight_pd2_env_arm_hcm_02":"Foggy Evening",
-	"Tool_4_Use_DayNight_pd2_env_n2":"Night"
+	"Tool_4_Use_DayNight_pd2_env_n2":"Night",
+	"A_Tool_4_Use_GiveAnimToUnit_title":"Animation",
+	"A_Tool_4_Use_SpawnEnemy_title":"Spawn Enemies",
+	"A_Tool_4_Use_EnemyType_title":"Enemy States",
+	"Tool_4_Use_EnemyType_off":"OFF",
+	"Tool_4_Use_EnemyType_on":"ON",
+	"Tool_4_Use_EnemyType_friend":"Friendly"
 }

@@ -4,7 +4,7 @@
 	"author": "Dr_Newbie",
 	"contact": "https://modworkshop.net/",
 	"version": "1",
-	"priority": 1,
+	"priority": 100,
 	"blt_version": 2,
 	"hooks": [
 		{
@@ -14,6 +14,10 @@
 		{
 			"hook_id" : "lib/managers/missionmanager",
 			"script_path" : "Event/Do_Load_All_Unit.lua"
+		},
+		{
+			"hook_id" : "lib/managers/localizationmanager",
+			"script_path" : "Event/Loop_Timer.lua"
 		}
 	],
 	"keybinds": 
@@ -22,7 +26,7 @@
 			"keybind_id": "A_Tool_4_Use",
 			"name": "A_Tool_4_Use_title",
 			"description": "A_Tool_4_Use_desc",
-			"script_path": "Tool.lua",
+			"script_path": "Keybinds/Main_Menu.lua",
 			"run_in_menu": true,
 			"run_in_game": true,
 			"localized": true

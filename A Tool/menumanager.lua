@@ -2,7 +2,8 @@ A_Tool_4_Use = A_Tool_4_Use or {
 	_path = ModPath,
 	_data_path = SavePath.."A_Tool_4_Use.txt",
 	_data = {
-		DayNight = 1
+		DayNight = 1,
+		EnemyStates = 1
 	}
 }
 
@@ -33,8 +34,31 @@ function A_Tool_4_Use:Ask_Reboot_Yes()
 	managers.game_play_central:restart_the_game()
 end
 
-function A_Tool_4_Use:Ask_Reboot()
+function A_Tool_4_Use:Get_Crosshair_Unit()
+	if self:InGame() and managers.player and managers.player:player_unit() then
+		local camera = managers.player:player_unit():camera()
+		local From = camera:position()
+		local To = Vector3()
+		mvector3.set(To, camera:forward())
+		mvector3.multiply(To, 20000)
+		mvector3.add(To, From)
+		local Ray = World:raycast("ray", From, To, "slot_mask", managers.slot:get_mask("bullet_impact_targets"))
+		if Ray and Ray.unit then
+			return Ray.unit
+		end
+	end
+	return nil
+end
+
+function A_Tool_4_Use:InGame()
 	if Utils and (Utils:IsInHeist() or Utils:IsInGameState()) then
+		return true
+	end
+	return false
+end
+
+function A_Tool_4_Use:Ask_Reboot()
+	if self:InGame() then
 		local opts = {}
 		opts[#opts+1] = {text = "[Yes]", callback_func = callback(self, self, "Ask_Reboot_Yes", {})}
 		opts[#opts+1] = {text = "[No]", is_cancel_button = true}
@@ -62,15 +86,25 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 	function MenuCallbackHandler:A_Tool_4_Use_Main_Menu()
 		A_Tool_4_Use:Main_Menu()
 	end
+	function MenuCallbackHandler:A_Tool_4_Use_SpawnEnemy_Menu()
+		A_Tool_4_Use:Spawn_Enemy_Menu()
+	end
 	function MenuCallbackHandler:A_Tool_4_Use_ReLoadLua()
 		A_Tool_4_Use:Init()
 	end
 	function MenuCallbackHandler:A_Tool_4_Use_RemoveUnit()
 		A_Tool_4_Use:Remove_Units_Menu()
 	end
+	function MenuCallbackHandler:A_Tool_4_Use_GiveAnimToUnit()
+		A_Tool_4_Use:Give_Anim_To_Unit_Menu()
+	end
 	function MenuCallbackHandler:A_Tool_4_Use_DayNight(item)
 		A_Tool_4_Use._data.DayNight = item:value()
 		A_Tool_4_Use:save(true)
+	end
+	function MenuCallbackHandler:A_Tool_4_Use_EnemyType(item)
+		A_Tool_4_Use._data.EnemyStates = item:value()
+		A_Tool_4_Use:save()
 	end
 	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu.json", A_Tool_4_Use, A_Tool_4_Use._data)
 end)
@@ -79,7 +113,6 @@ function A_Tool_4_Use:Init()
 	self:load()
 	local path_now = self._path.."/Function/Load_Lua.lua"
 	dofile(path_now)
-	self:Log(path_now)
 end
 
 A_Tool_4_Use:Init()

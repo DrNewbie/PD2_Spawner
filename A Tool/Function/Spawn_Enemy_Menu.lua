@@ -1,6 +1,6 @@
 function A_Tool_4_Use:Spawn_Enemy_Menu_In_Type_Done(enemy)
 	if type(enemy) == "string" then
-		self:Spawn_On_Crosshair(enemy)
+		self:Spawn_On_Crosshair(enemy, self._data.EnemyStates)
 	else
 		A_Tool_4_Use:Log('Spawn_Enemy_Menu_In_Type_Done, type(enemy) == "string"')
 		return
@@ -14,37 +14,44 @@ function A_Tool_4_Use:Spawn_Enemy_Menu_In_Type(data)
 	end
 	local enemy = data.enemy or {}
 	local index = data.index or 0
+	if index < 0 then index = 0 end
+	local j = 0
 	local opts = {}
 	if type(enemy) == "table" then
 		for i, d in pairs(enemy) do
-			if i > index and #opts < 12 then
+			if i > index then
 				local ey = string.split(d, "/")
 				opts[#opts+1] = {text = "["..ey[#ey].."]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type_Done", d)}
+				j = i
 			end
-		end		
+			if #opts >= 12 then
+				break
+			end
+		end
 	end
-	opts[#opts+1] = {text = "[Back]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type", {enemy = d, index = i - 12})}
-	opts[#opts+1] = {text = "[Next]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type", {enemy = d, index = i})}
+	opts[#opts+1] = {text = "[Next]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type", {enemy = data.enemy, index = j})}
 	opts[#opts+1] = {text = "[Cancel]", is_cancel_button = true}
 	managers.system_menu:show({
 		title = "[List]",
 		text = "Which one?",
 		button_list = opts,
-		id = tostring(math.random(0,0xFFFFFFFF))
+		id = "Random_Temp_Menu_"..Idstring(tostring(os.time())):key()
 	})
 end
 
 function A_Tool_4_Use:Spawn_Enemy_Menu()
-	local enemy = self:Enemy_List()
-	local opts = {}
-	for i, d in pairs(enemy) do
-		opts[#opts+1] = {text = "["..i.."]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type", {enemy = d})}
+	if self:InGame() then
+		local enemy = self:Enemy_List()
+		local opts = {}
+		for i, d in pairs(enemy) do
+			opts[#opts+1] = {text = "["..i.."]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type", {enemy = d})}
+		end
+		opts[#opts+1] = {text = "[Cancel]", is_cancel_button = true}
+		managers.system_menu:show({
+			title = "[List]",
+			text = "Which one?",
+			button_list = opts,
+			id = "Random_Temp_Menu_"..Idstring(tostring(os.time())):key()
+		})
 	end
-	opts[#opts+1] = {text = "[Cancel]", is_cancel_button = true}
-	managers.system_menu:show({
-		title = "[List]",
-		text = "Which one?",
-		button_list = opts,
-		id = tostring(math.random(0,0xFFFFFFFF))
-	})
 end
