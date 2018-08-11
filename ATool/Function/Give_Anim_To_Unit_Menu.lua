@@ -1,12 +1,16 @@
 function A_Tool_4_Use:Give_Repeat_Anim_Unit_Yes(data)
 	if data.ask == 1 then
 		self:Give_Anim_To_Crosshair_Unit(true, self._Using_Anim)
+	elseif data.ask == 2 then
+		self:Give_Anim_To_Enemies_Unit(true, self._Using_Anim)
 	end
 end
 
 function A_Tool_4_Use:Give_Repeat_Anim_Unit_No(data)
 	if data.ask == 1 then
 		self:Give_Anim_To_Crosshair_Unit(false, self._Using_Anim)
+	elseif data.ask == 2 then
+		self:Give_Anim_To_Enemies_Unit(false, self._Using_Anim)
 	end
 end
 
@@ -75,6 +79,7 @@ function A_Tool_4_Use:Give_Anim_To_Unit_Menu()
 		local opts = {}
 		opts[#opts+1] = {text = "Change Anim", callback_func = callback(self, self, "Change_Using_Anim", {})}
 		opts[#opts+1] = {text = "Crosshair", callback_func = callback(self, self, "Give_Repeat_Anim_Unit", {ask = 1})}
+		opts[#opts+1] = {text = "Enemies", callback_func = callback(self, self, "Give_Repeat_Anim_Unit", {ask = 2})}
 		opts[#opts+1] = {text = "[Close]", is_cancel_button = true}
 		managers.system_menu:show({
 			title = "[List]",
