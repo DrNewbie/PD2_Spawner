@@ -18,6 +18,14 @@
 		{
 			"hook_id" : "lib/managers/localizationmanager",
 			"script_path" : "Event/Loop_Timer.lua"
+		},
+		{
+			"hook_id" : "lib/managers/achievmentmanager",
+			"script_path" : "Prevent/BlockMe.lua"
+		},
+		{
+			"hook_id" : "lib/network/matchmaking/networkmatchmakingsteam",
+			"script_path" : "Prevent/BlockMe.lua"
 		}
 	],
 	"keybinds": 
