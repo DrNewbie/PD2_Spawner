@@ -1,9 +1,30 @@
-function A_Tool_4_Use:Give_Repeat_Anim_Unit_Yes(data)
+function A_Tool_4_Use:Give_Repeat_Anim_Unit_Yes_Sync(data)
 	if data.ask == 1 then
 		self:Give_Anim_To_Crosshair_Unit(true, self._Using_Anim)
 	elseif data.ask == 2 then
 		self:Give_Anim_To_Enemies_Unit(true, self._Using_Anim)
 	end
+end
+
+function A_Tool_4_Use:Give_Repeat_Anim_Unit_Yes_Solo(data)
+	if data.ask == 1 then
+		self:Give_Anim_To_Crosshair_Unit(true, self._Using_Anim, self._data.AnimSoloLoop)
+	elseif data.ask == 2 then
+		self:Give_Anim_To_Enemies_Unit(true, self._Using_Anim, self._data.AnimSoloLoop)
+	end
+end
+
+function A_Tool_4_Use:Give_Repeat_Anim_Unit_Yes(data)
+	local opts = {}
+	opts[#opts+1] = {text = "[Sync]", callback_func = callback(self, self, "Give_Repeat_Anim_Unit_Yes_Sync", data)}
+	opts[#opts+1] = {text = "[Solo]", callback_func = callback(self, self, "Give_Repeat_Anim_Unit_Yes_Solo", data)}
+	opts[#opts+1] = {text = "[Close]", is_cancel_button = true}
+	managers.system_menu:show({
+		title = "[Animation]",
+		text = "Repeat the anim?",
+		button_list = opts,
+		id = "Random_Temp_Menu_"..Idstring(tostring(os.time())):key()
+	})
 end
 
 function A_Tool_4_Use:Give_Repeat_Anim_Unit_No(data)

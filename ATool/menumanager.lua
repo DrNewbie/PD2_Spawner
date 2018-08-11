@@ -1,11 +1,12 @@
-A_Tool_4_Use = A_Tool_4_Use or {
-	_path = ModPath,
-	_data_path = SavePath.."A_Tool_4_Use.txt",
-	_data = {
+A_Tool_4_Use = A_Tool_4_Use or {}
+A_Tool_4_Use._path = ModPath
+A_Tool_4_Use._data_path = SavePath.."A_Tool_4_Use.txt"
+A_Tool_4_Use._data = {
 		DayNight = 1,
-		EnemyStates = 1
+		EnemyStates = 1,
+		AnimSyncLoop = 1,
+		AnimSoloLoop = 1
 	}
-}
 
 A_Tool_4_Use.Aim_Far = 10000
 
@@ -104,6 +105,14 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 	end
 	function MenuCallbackHandler:A_Tool_4_Use_EnemyType(item)
 		A_Tool_4_Use._data.EnemyStates = item:value()
+		A_Tool_4_Use:save()
+	end
+	function MenuCallbackHandler:A_Tool_4_Use_AnimSyncLoop(item)
+		A_Tool_4_Use._data.AnimSyncLoop = item:value()
+		A_Tool_4_Use:save()
+	end
+	function MenuCallbackHandler:A_Tool_4_Use_AnimSoloLoop(item)
+		A_Tool_4_Use._data.AnimSoloLoop = item:value()
 		A_Tool_4_Use:save()
 	end
 	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu.json", A_Tool_4_Use, A_Tool_4_Use._data)

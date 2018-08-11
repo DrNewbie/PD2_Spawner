@@ -16,5 +16,7 @@
 	"A_Tool_4_Use_EnemyType_title":"Enemy States",
 	"Tool_4_Use_EnemyType_off":"OFF",
 	"Tool_4_Use_EnemyType_on":"ON",
-	"Tool_4_Use_EnemyType_friend":"Friendly"
+	"Tool_4_Use_EnemyType_friend":"Friendly",
+	"A_Tool_4_Use_AnimSyncLoop_title":"Anim Sync Delay",
+	"A_Tool_4_Use_AnimSoloLoop_title":"Anim Solo Delay"
 }

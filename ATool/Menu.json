@@ -61,7 +61,32 @@
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_RemoveUnit"
 		},
-		{"type": "divider", "size": 160},
+		{"type": "divider", "size": 40},
+		{
+			"type" : "slider",
+			"id" : "A_Tool_4_AnimSyncLoop_Menu",
+			"title" : "A_Tool_4_Use_AnimSyncLoop_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_AnimSyncLoop",
+			"value" : "AnimSyncLoop",
+			"default_value" : 1,
+			"max" : 100,
+			"min" : 0,
+			"step" : 0.1
+		},
+		{
+			"type" : "slider",
+			"id" : "A_Tool_4_AnimSoloLoop_Menu",
+			"title" : "A_Tool_4_Use_AnimSoloLoop_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_AnimSoloLoop",
+			"value" : "AnimSoloLoop",
+			"default_value" : 1,
+			"max" : 100,
+			"min" : 0,
+			"step" : 0.1
+		},
+		{"type": "divider", "size": 40},
 		{
 			"type" : "button",
 			"id" : "A_Tool_4_ReLoadLua_Menu",
