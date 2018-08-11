@@ -1,0 +1,14 @@
+{
+	"A_Tool_4_Use_title":"A Tool",
+	"A_Tool_4_Use_desc":" ",
+	"A_Tool_4_Use_empty_desc":" ",
+	"A_Tool_4_Use_Main_Menu_title":"Open Main Menu",
+	"A_Tool_4_Use_ReLoadLua_title":"Reload 'Function'",
+	"A_Tool_4_Use_RemoveUnit_title":"Remove Units",
+	"A_Tool_4_Use_DayNight_title":"Day/Night Changes",
+	"Tool_4_Use_DayNight_default":"Default",
+	"Tool_4_Use_DayNight_pd2_env_hox_02":"Early Morning",
+	"Tool_4_Use_DayNight_pd2_env_morning_02":"Morning",
+	"Tool_4_Use_DayNight_pd2_env_arm_hcm_02":"Foggy Evening",
+	"Tool_4_Use_DayNight_pd2_env_n2":"Night"
+}

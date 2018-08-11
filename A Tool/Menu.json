@@ -1,0 +1,46 @@
+{
+	"menu_id":"A_Tool_4_Use_menu_id",
+	"parent_menu_id":"blt_options",
+	"title":"A_Tool_4_Use_title",
+	"description":"A_Tool_4_Use_desc",
+	"back_callback":"A_Tool_4_Use_back_callback",
+	"items":[
+		{
+			"type" : "button",
+			"id" : "A_Tool_4_Use_Main_Menu",
+			"title" : "A_Tool_4_Use_Main_Menu_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_Main_Menu"
+		},
+		{
+			"type":"multiple_choice",
+			"id":"A_Tool_4_DayNight_Menu",
+			"title":"A_Tool_4_Use_DayNight_title",
+			"description":"A_Tool_4_Use_empty_desc",
+			"callback":"A_Tool_4_Use_DayNight",
+			"items":[
+				"Tool_4_Use_DayNight_default",
+				"Tool_4_Use_DayNight_pd2_env_hox_02",
+				"Tool_4_Use_DayNight_pd2_env_morning_02",
+				"Tool_4_Use_DayNight_pd2_env_arm_hcm_02",
+				"Tool_4_Use_DayNight_pd2_env_n2"
+			],
+			"value":"DayNight"
+		},
+		{
+			"type" : "button",
+			"id" : "A_Tool_4_RemoveUnit_Menu",
+			"title" : "A_Tool_4_Use_RemoveUnit_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_RemoveUnit"
+		},
+		{"type": "divider", "size": 160},
+		{
+			"type" : "button",
+			"id" : "A_Tool_4_ReLoadLua_Menu",
+			"title" : "A_Tool_4_Use_ReLoadLua_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_ReLoadLua"
+		}
+	]
+}
