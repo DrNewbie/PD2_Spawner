@@ -13,6 +13,9 @@ end
 function A_Tool_4_Use:Spawn_On_Crosshair(name, active, Rot)
 	if Utils and managers.player and managers.player:player_unit() then
 		local Pos = Utils:GetPlayerAimPos(managers.player:player_unit(), A_Tool_4_Use.Aim_Far)
+		if not tostring(Pos):find("Vector3") then
+			return
+		end
 		Rot = Rot or self:turn(managers.player:player_unit():camera():rotation())
 		local unit = safe_spawn_unit(Idstring(name), Pos, Rot)
 		if unit then
