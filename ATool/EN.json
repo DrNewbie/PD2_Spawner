@@ -18,5 +18,7 @@
 	"Tool_4_Use_EnemyType_on":"ON",
 	"Tool_4_Use_EnemyType_friend":"Friendly",
 	"A_Tool_4_Use_AnimSyncLoop_title":"Anim Sync Delay",
-	"A_Tool_4_Use_AnimSoloLoop_title":"Anim Solo Delay"
+	"A_Tool_4_Use_AnimSoloLoop_title":"Anim Solo Delay",
+	"A_Tool_4_HeavyLoad_title":"Heavy Load",
+	"A_Tool_4_HeavyLoad_Enable_title":"Enable This"
 }

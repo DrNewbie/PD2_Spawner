@@ -1,34 +1,43 @@
 A_Tool_4_Use = A_Tool_4_Use or {}
 A_Tool_4_Use._path = ModPath
-A_Tool_4_Use._data_path = SavePath.."A_Tool_4_Use.txt"
+A_Tool_4_Use._data_path = A_Tool_4_Use._path.."Save.txt"
+A_Tool_4_Use._log_path = A_Tool_4_Use._path.."Logs.txt"
 A_Tool_4_Use._data = {
 		DayNight = 1,
 		EnemyStates = 1,
 		AnimSyncLoop = 1,
-		AnimSoloLoop = 1
+		AnimSoloLoop = 1,
+		HeavyLoad_Enable = false,
+		HeavyLoad_List = {}
 	}
 
 A_Tool_4_Use.Aim_Far = 10000
 
 function A_Tool_4_Use:save(ask_reboot)
-	local file = io.open(self._data_path, "w+")
-	if file then
-		file:write(json.encode(self._data))
-		file:close()
+	local xfile = io.open(self._data_path, "w+")
+	if xfile then
+		xfile:write(json.encode(self._data))
+		xfile:close()
 	end
 	self.ask_reboot = ask_reboot
 end
 
 function A_Tool_4_Use:load()
-	local file = io.open(self._data_path, "r")
-	if file then
-		self._data = json.decode(file:read("*all"))
-		file:close()
+	local xfile = io.open(self._data_path, "r")
+	if xfile then
+		self._data = json.decode(xfile:read("*all"))
+		xfile:close()
 	end
 end
 
 function A_Tool_4_Use:Log(msg)
-	log("[Tool] "..tostring(msg))
+	msg = tostring(msg)
+	local xfile = io.open(self._log_path, "a")
+	if xfile then
+		xfile:write(tostring(os.date("!%H:%M:%S")).."\t"..msg.."\n")
+		xfile:close()
+	end
+	log(msg)
 end
 
 function A_Tool_4_Use:Ask_Reboot_Yes()
@@ -115,7 +124,58 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 		A_Tool_4_Use._data.AnimSoloLoop = item:value()
 		A_Tool_4_Use:save()
 	end
-	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu.json", A_Tool_4_Use, A_Tool_4_Use._data)
+	function MenuCallbackHandler:A_Tool_4_Use_HeavyLoad_Enable(item)
+		A_Tool_4_Use._data.HeavyLoad_Enable = tostring(item:value()) == "on" and true or false
+		A_Tool_4_Use:save()
+	end
+	
+	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu/Menu.json", A_Tool_4_Use, A_Tool_4_Use._data)
+	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu/HeavyLoad.json", A_Tool_4_Use, A_Tool_4_Use._data.HeavyLoad_List)
+	
+	if tweak_data.levels then
+		local xfile = io.open(A_Tool_4_Use._path.."Menu/HeavyLoad.json", "w+")
+		if xfile then 
+			local A_Tool_4_Use_HeavyLoad_List = {}
+			table.insert(A_Tool_4_Use_HeavyLoad_List, {
+				["type"] = "toggle",
+				["id"] = "A_Tool_4_HeavyLoad_Enable_Menu",
+				["title"] = "A_Tool_4_HeavyLoad_Enable_title",
+				["desc"] = "A_Tool_4_Use_empty_desc",
+				["callback"] = "A_Tool_4_Use_HeavyLoad_Enable",
+				["value"] = "HeavyLoad_Enable",
+				["default_value"] = false
+			})
+			table.insert(A_Tool_4_Use_HeavyLoad_List, {
+				["type"] = "divider",
+				["size"] = 40
+			})
+			for id, lvl in ipairs(tweak_data.levels._level_index) do
+				local cbk = "Cbk_"..Idstring("A_Tool_4_Use_HeavyLoad_"..lvl):key()
+				MenuCallbackHandler[cbk] = function(self, item)			
+					A_Tool_4_Use._data.HeavyLoad_List[lvl] = tostring(item:value()) == "on" and true or false
+					A_Tool_4_Use:save()
+				end
+				table.insert(A_Tool_4_Use_HeavyLoad_List, {
+					["type"] = "toggle",
+					["id"] = "Menu_"..Idstring("A_Tool_4_Use_HeavyLoad_"..lvl):key(),
+					["title"] = tweak_data.levels[lvl].name_id,
+					["desc"] = "A_Tool_4_Use_empty_desc",
+					["callback"] = cbk,
+					["value"] = lvl,
+					["default_value"] = false
+				})
+			end
+			xfile:write('{\n')
+			xfile:write('	"menu_id":"A_Tool_4_HeavyLoad_Menu",\n')
+			xfile:write('	"parent_menu_id":"A_Tool_4_Use_menu_id",\n')
+			xfile:write('	"title":"A_Tool_4_HeavyLoad_title",\n')
+			xfile:write('	"description":"A_Tool_4_Use_empty_desc",\n')
+			xfile:write('	"back_callback":"A_Tool_4_Use_back_callback",\n')
+			xfile:write('	"items":'..json.encode(A_Tool_4_Use_HeavyLoad_List)..'\n')
+			xfile:write('}\n')
+			xfile:close()
+		end
+	end
 end)
 
 function A_Tool_4_Use:Init()

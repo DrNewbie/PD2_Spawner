@@ -93,6 +93,7 @@
 			"title" : "A_Tool_4_Use_ReLoadLua_title",
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_ReLoadLua"
-		}
+		},
+		{"type": "divider", "size": 40}
 	]
 }
