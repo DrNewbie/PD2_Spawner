@@ -61,6 +61,13 @@
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_RemoveUnit"
 		},
+		{
+			"type" : "button",
+			"id" : "A_Tool_4_RemoveUnit_Menu",
+			"title" : "A_Tool_4_Use_StopUnit_title",
+			"description" : "A_Tool_4_Use_empty_desc",
+			"callback" : "A_Tool_4_Use_StopUnit"
+		},
 		{"type": "divider", "size": 40},
 		{
 			"type" : "slider",

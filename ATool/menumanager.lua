@@ -105,6 +105,9 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 	function MenuCallbackHandler:A_Tool_4_Use_RemoveUnit()
 		A_Tool_4_Use:Remove_Units_Menu()
 	end
+	function MenuCallbackHandler:A_Tool_4_Use_StopUnit()
+		A_Tool_4_Use:Stop_Unit_Menu()
+	end
 	function MenuCallbackHandler:A_Tool_4_Use_GiveAnimToUnit()
 		A_Tool_4_Use:Give_Anim_To_Unit_Menu()
 	end

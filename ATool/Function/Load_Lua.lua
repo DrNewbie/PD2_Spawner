@@ -9,7 +9,8 @@ function A_Tool_4_Use:load_lua()
 		"Remove_Units_Menu",
 		"Give_Anim_To_Unit",
 		"Give_Anim_To_Unit_Menu",
-		"Fake_Upgrade"
+		"Fake_Upgrade",
+		"Stop_Unit_Menu"
 	}
 	for _, lua_name in pairs(lua_list) do
 		local path_now = self._path.."/Function/"..lua_name..".lua"
