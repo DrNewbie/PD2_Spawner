@@ -63,7 +63,7 @@
 		},
 		{
 			"type" : "button",
-			"id" : "A_Tool_4_RemoveUnit_Menu",
+			"id" : "A_Tool_4_StopUnit_Menu",
 			"title" : "A_Tool_4_Use_StopUnit_title",
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_StopUnit"
