@@ -12,6 +12,17 @@
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_Main_Menu"
 		},
+		{"type": "divider", "size": 20},
+		{
+			"type":"toggle",
+			"id":"A_Tool_4_SafeSpawn_Enable_Menu",
+			"title":"A_Tool_4_SafeSpawn_Enable_title",
+			"description":"A_Tool_4_SafeSpawn_Enable_desc",
+			"value":"SafeSpawn_Enable",
+			"default_value":true,
+			"callback":"A_Tool_4_Use_SafeSpawn_Enable"
+		},
+		{"type": "divider", "size": 20},
 		{
 			"type" : "button",
 			"id" : "A_Tool_4_SpawnEnemy_Menu",
@@ -68,7 +79,7 @@
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_StopUnit"
 		},
-		{"type": "divider", "size": 40},
+		{"type": "divider", "size": 20},
 		{
 			"type" : "slider",
 			"id" : "A_Tool_4_AnimSyncLoop_Menu",
@@ -93,7 +104,7 @@
 			"min" : 0,
 			"step" : 0.1
 		},
-		{"type": "divider", "size": 40},
+		{"type": "divider", "size": 20},
 		{
 			"type" : "button",
 			"id" : "A_Tool_4_ReLoadLua_Menu",
@@ -101,6 +112,6 @@
 			"description" : "A_Tool_4_Use_empty_desc",
 			"callback" : "A_Tool_4_Use_ReLoadLua"
 		},
-		{"type": "divider", "size": 40}
+		{"type": "divider", "size": 20}
 	]
 }

@@ -8,6 +8,7 @@ A_Tool_4_Use._data = {
 		AnimSyncLoop = 1,
 		AnimSoloLoop = 1,
 		HeavyLoad_Enable = false,
+		SafeSpawn_Enable = true,
 		HeavyLoad_List = {}
 	}
 
@@ -81,11 +82,11 @@ function A_Tool_4_Use:Ask_Reboot()
 	end
 end
 
-Hooks:Add("LocalizationManagerPostInit", "LocManPosIni_g145Menu", function(self)
+Hooks:Add("LocalizationManagerPostInit", "LocManPosInit_SpawnToolMenu", function(self)
 	self:load_localization_file(A_Tool_4_Use._path.."EN.json")
 end)
 
-Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
+Hooks:Add("MenuManagerInitialize", "MenManInit_SpawnToolMenu", function(menu_manager)
 	function MenuCallbackHandler:A_Tool_4_Use_back_callback()
 		if A_Tool_4_Use.ask_reboot then
 			A_Tool_4_Use.ask_reboot = nil
@@ -131,7 +132,10 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 		A_Tool_4_Use._data.HeavyLoad_Enable = tostring(item:value()) == "on" and true or false
 		A_Tool_4_Use:save()
 	end
-	
+	function MenuCallbackHandler:A_Tool_4_Use_SafeSpawn_Enable(item)
+		A_Tool_4_Use._data.SafeSpawn_Enable = tostring(item:value()) == "on" and true or false
+		A_Tool_4_Use:save()
+	end	
 	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu/Menu.json", A_Tool_4_Use, A_Tool_4_Use._data)
 	MenuHelper:LoadFromJsonFile(A_Tool_4_Use._path.."Menu/HeavyLoad.json", A_Tool_4_Use, A_Tool_4_Use._data.HeavyLoad_List)
 	
@@ -143,7 +147,7 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 				["type"] = "toggle",
 				["id"] = "A_Tool_4_HeavyLoad_Enable_Menu",
 				["title"] = "A_Tool_4_HeavyLoad_Enable_title",
-				["desc"] = "A_Tool_4_Use_empty_desc",
+				["description"] = "A_Tool_4_Use_empty_desc",
 				["callback"] = "A_Tool_4_Use_HeavyLoad_Enable",
 				["value"] = "HeavyLoad_Enable",
 				["default_value"] = false
@@ -162,7 +166,7 @@ Hooks:Add("MenuManagerInitialize", "MenManIni_g145Menu", function(menu_manager)
 					["type"] = "toggle",
 					["id"] = "Menu_"..Idstring("A_Tool_4_Use_HeavyLoad_"..lvl):key(),
 					["title"] = tweak_data.levels[lvl].name_id,
-					["desc"] = "A_Tool_4_Use_empty_desc",
+					["description"] = "A_Tool_4_Use_empty_desc",
 					["callback"] = cbk,
 					["value"] = lvl,
 					["default_value"] = false

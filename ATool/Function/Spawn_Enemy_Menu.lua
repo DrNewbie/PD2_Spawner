@@ -2,14 +2,14 @@ function A_Tool_4_Use:Spawn_Enemy_Menu_In_Type_Done(enemy)
 	if type(enemy) == "string" then
 		self:Spawn_On_Crosshair(enemy, self._data.EnemyStates)
 	else
-		A_Tool_4_Use:Log('Spawn_Enemy_Menu_In_Type_Done, type(enemy) == "string"')
+		self:Log('Spawn_Enemy_Menu_In_Type_Done, type(enemy) == "string"')
 		return
 	end
 end
 
 function A_Tool_4_Use:Spawn_Enemy_Menu_In_Type(data)
 	if type(data) ~= "table" then
-		A_Tool_4_Use:Log('Spawn_Enemy_Menu_In_Type, type(data) ~= "table"')
+		self:Log('Spawn_Enemy_Menu_In_Type, type(data) ~= "table"')
 		return
 	end
 	local enemy = data.enemy or {}
@@ -19,13 +19,15 @@ function A_Tool_4_Use:Spawn_Enemy_Menu_In_Type(data)
 	local opts = {}
 	if type(enemy) == "table" then
 		for i, d in pairs(enemy) do
-			if i > index then
-				local ey = string.split(d, "/")
-				opts[#opts+1] = {text = "["..ey[#ey].."]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type_Done", d)}
-				j = i
-			end
-			if #opts >= 12 then
-				break
+			if not self._data.SafeSpawn_Enable or (self._data.SafeSpawn_Enable and PackageManager:unit_data(Idstring(d))) then
+				if i > index then
+					local ey = string.split(d, "/")
+					opts[#opts+1] = {text = "["..ey[#ey].."]", callback_func = callback(self, self, "Spawn_Enemy_Menu_In_Type_Done", d)}
+					j = i
+				end
+				if #opts >= 12 then
+					break
+				end
 			end
 		end
 	end

@@ -21,5 +21,7 @@
 	"A_Tool_4_Use_AnimSoloLoop_title":"Anim Solo Delay",
 	"A_Tool_4_HeavyLoad_title":"Heavy Load",
 	"A_Tool_4_HeavyLoad_Enable_title":"Enable This",
+	"A_Tool_4_SafeSpawn_Enable_title":"Safe Spawn",
+	"A_Tool_4_SafeSpawn_Enable_desc":"You can't spawn what it hasn't loaded yet.",
 	"A_Tool_4_Use_StopUnit_title":"Stop Unit"
 }
