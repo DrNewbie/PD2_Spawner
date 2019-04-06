@@ -143,19 +143,6 @@ Hooks:Add("MenuManagerInitialize", "MenManInit_SpawnToolMenu", function(menu_man
 		local xfile = io.open(A_Tool_4_Use._path.."Menu/HeavyLoad.json", "w+")
 		if xfile then 
 			local A_Tool_4_Use_HeavyLoad_List = {}
-			table.insert(A_Tool_4_Use_HeavyLoad_List, {
-				["type"] = "toggle",
-				["id"] = "A_Tool_4_HeavyLoad_Enable_Menu",
-				["title"] = "A_Tool_4_HeavyLoad_Enable_title",
-				["description"] = "A_Tool_4_Use_empty_desc",
-				["callback"] = "A_Tool_4_Use_HeavyLoad_Enable",
-				["value"] = "HeavyLoad_Enable",
-				["default_value"] = false
-			})
-			table.insert(A_Tool_4_Use_HeavyLoad_List, {
-				["type"] = "divider",
-				["size"] = 40
-			})
 			for id, lvl in ipairs(tweak_data.levels._level_index) do
 				local cbk = "Cbk_"..Idstring("A_Tool_4_Use_HeavyLoad_"..lvl):key()
 				MenuCallbackHandler[cbk] = function(self, item)			
@@ -172,6 +159,22 @@ Hooks:Add("MenuManagerInitialize", "MenManInit_SpawnToolMenu", function(menu_man
 					["default_value"] = false
 				})
 			end
+			table.sort(A_Tool_4_Use_HeavyLoad_List, function(a, b)
+				return string.lower(managers.localization:text(a.title)) < string.lower(managers.localization:text(b.title))
+			end)
+			table.insert(A_Tool_4_Use_HeavyLoad_List, 1, {
+				["type"] = "toggle",
+				["id"] = "A_Tool_4_HeavyLoad_Enable_Menu",
+				["title"] = "A_Tool_4_HeavyLoad_Enable_title",
+				["description"] = "A_Tool_4_Use_empty_desc",
+				["callback"] = "A_Tool_4_Use_HeavyLoad_Enable",
+				["value"] = "HeavyLoad_Enable",
+				["default_value"] = false
+			})
+			table.insert(A_Tool_4_Use_HeavyLoad_List, 2, {
+				["type"] = "divider",
+				["size"] = 40
+			})
 			xfile:write('{\n')
 			xfile:write('	"menu_id":"A_Tool_4_HeavyLoad_Menu",\n')
 			xfile:write('	"parent_menu_id":"A_Tool_4_Use_menu_id",\n')
