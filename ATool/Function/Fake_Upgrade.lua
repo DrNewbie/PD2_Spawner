@@ -1,4 +1,4 @@
-if PlayerManager and A_Tool_4_Use and self:is_Enable() then
+if PlayerManager and A_Tool_4_Use and A_Tool_4_Use:is_Enable() then
 	A_Tool_4_Use.Fake_upgrade_List = A_Tool_4_Use.Fake_upgrade_List or {}
 
 	function A_Tool_4_Use:Get_Fake_Upgrade(category, upgrade)
