@@ -42,7 +42,7 @@ function A_Tool_4_Use:Spawn_Enemy_Menu_In_Type(data)
 end
 
 function A_Tool_4_Use:Spawn_Enemy_Menu()
-	if self:InGame() then
+	if self:InGame() and self:is_Enable() then
 		local enemy = self:Enemy_List()
 		local opts = {}
 		for i, d in pairs(enemy) do

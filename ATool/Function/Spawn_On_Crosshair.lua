@@ -12,7 +12,7 @@ end
 
 function A_Tool_4_Use:Spawn_On_Crosshair(name, active, Rot)
 	name = tostring(name)
-	if Utils and managers.player and managers.player:player_unit() then
+	if Utils and managers.player and managers.player:player_unit() and self:is_Enable() then
 		local Pos = Utils:GetPlayerAimPos(managers.player:player_unit(), self.Aim_Far)
 		if not tostring(Pos):find("Vector3") then
 			return

@@ -96,7 +96,7 @@ function A_Tool_4_Use:Change_Using_Anim()
 end
 
 function A_Tool_4_Use:Give_Anim_To_Unit_Menu()
-	if self:InGame() then
+	if self:InGame() and self:is_Enable() then
 		local opts = {}
 		opts[#opts+1] = {text = "Change Anim", callback_func = callback(self, self, "Change_Using_Anim", {})}
 		opts[#opts+1] = {text = "Crosshair", callback_func = callback(self, self, "Give_Repeat_Anim_Unit", {ask = 1})}

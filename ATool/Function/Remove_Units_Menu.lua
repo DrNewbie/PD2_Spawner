@@ -1,5 +1,5 @@
 function A_Tool_4_Use:Remove_Units_Menu()
-	if self:InGame() then
+	if self:InGame() and self:is_Enable() then
 		local opts = {}
 		opts[#opts+1] = {text = "Spawned", callback_func = callback(self, self, "Remove_All_Unit", {})}
 		opts[#opts+1] = {text = "Crosshair", callback_func = callback(self, self, "Remove_Crosshair_Unit", {})}

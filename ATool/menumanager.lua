@@ -14,6 +14,14 @@ A_Tool_4_Use._data = {
 
 A_Tool_4_Use.Aim_Far = 10000
 
+function A_Tool_4_Use:is_Enable()
+	if Global.game_settings.permission == "friends_only" or Global.game_settings.permission == "private" or Global.game_settings.single_player then
+		return true
+	else
+		return false
+	end
+end
+
 function A_Tool_4_Use:save(ask_reboot)
 	local xfile = io.open(self._data_path, "w+")
 	if xfile then

@@ -1,5 +1,5 @@
 function A_Tool_4_Use:Stop_Unit_Menu()
-	if Utils and managers.player and managers.player:player_unit() then
+	if Utils and managers.player and managers.player:player_unit() and self:is_Enable() then
 		local unit = self:Get_Crosshair_Unit()
 		if unit and unit:brain() then
 			local machine = unit:anim_state_machine()
