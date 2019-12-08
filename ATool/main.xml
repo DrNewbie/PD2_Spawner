@@ -1,5 +1,5 @@
 <table name="A Tool">
-    <AssetUpdates id="PortableEnemySpawnerGitHubUpdateProvider" version="11">
+    <AssetUpdates id="PortableEnemySpawnerGitHubUpdateProvider" version="11.1">
         <custom_provider version_api_url="https://drnewbie.github.io/PD2_Spawner/UpdateProvider/PortableEnemySpawnerGitHubUpdateProvider.txt" download_url="https://drnewbie.github.io/PD2_Spawner/UpdateProvider/PortableEnemySpawnerGitHubUpdateProvider.zip"/>
     </AssetUpdates>
 </table>

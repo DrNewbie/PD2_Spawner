@@ -19,7 +19,7 @@ function A_Tool_4_Use:Day_Night_Changes()
 		if not PackageManager:loaded("levels/instances/unique/hlm_door_wooden_white_green/world") then
 			PackageManager:load("levels/instances/unique/hlm_door_wooden_white_green/world")
 		end
-		if not PackageManager:load( "levels/narratives/vlad/ukrainian_job/world_sounds" ) then
+		if not PackageManager:loaded( "levels/narratives/vlad/ukrainian_job/world_sounds" ) then
 			PackageManager:load( "levels/narratives/vlad/ukrainian_job/world_sounds" )
 			PackageManager:load( "levels/narratives/vlad/jewelry_store/world_sounds" )
 		end
